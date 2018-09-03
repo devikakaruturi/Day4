@@ -3,30 +3,38 @@ package com.capgemini.day4.domain;
 public class Employee {
 	private long employeeid;
 	private String employeeName;
-	private String employeeAddress;
-	private double basicSalary;
-	private int employeephone;
+	//private String employeeAddress;
+	private double basicsalary;
+	//private int employeephone;
+	public static final double medical=2500;
 	
 	
-	public final  double specialAllowance=250.80;
-	public final double hra=1000.50;
+	//public final  double specialAllowance=250.80;
+	//public final double hra=1000.50;
+	public static final int pt=200;
 	public Employee()
 	{
 		super();
 	}
-	public Employee(long id,String Name,String address,int phone)
+	public Employee(long id,String Name,double basicsalary)
 	{
 		this();
 		this.employeeid=id;
 		this.employeeName=Name;
-		this.employeeAddress=address;
-		this.employeephone=phone;
+		this.basicsalary=basicsalary;
+		//this.employeeAddress=address;
+		//this.employeephone=phone;
 	}
-	public void caluculateSalary(double basicSalary)
+	public double netSalary()
 	{
-		double salary;
-		salary=basicSalary + ( basicSalary * specialAllowance/100) + ( basicSalary * hra/100); 
-		System.out.println("Salary of an employee is:"+salary);
+		double  hra = basicsalary*0.5;
+		double pf  = basicsalary*0.12;
+		double grosssalary = hra+basicsalary+medical;
+		double netsalary = grosssalary-(pf+pt);	
+		return netsalary;	
 	}
-	
+	public void employeeInfo(long employeeid,String employeeName,double netsalary)
+	{
+		System.out.println("EmployeeId is"+employeeid+"Employee Name is"+employeeName+"netsalary of an employee is"+netsalary);
+	}
 }
